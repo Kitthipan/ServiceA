@@ -1,0 +1,3 @@
+com\demo\ServiceA\ServletInitializer.class
+com\demo\ServiceA\ServiceAApplication.class
+com\demo\ServiceA\controller\ServiceAController.class

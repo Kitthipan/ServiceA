@@ -1,0 +1,13 @@
+server:
+  port: 8081  # หรือพอร์ตที่ต้องการ
+
+spring:
+  application:
+    name: service-a  # ชื่อของ Service ใน Eureka
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server:8761/eureka/  # ชี้ไปที่ Eureka Server
+  instance:
+    preferIpAddress: true
