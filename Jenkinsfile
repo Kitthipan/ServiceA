@@ -7,7 +7,7 @@ pipeline {
         DOCKER_CREDENTIALS = 'dockerhub-credentials'
         GIT_CREDENTIALS = 'github-credentials'
         SSH_CREDENTIALS = 'ec2-ssh-key'
-        EC2_HOST = '34.201.184.184'   // ใส่ Elastic IP ที่เพิ่งทำ
+        EC2_HOST = '34.201.184.184'   // Elastic IP หรือ Public IP ใหม่
     }
 
     stages {
@@ -44,13 +44,14 @@ pipeline {
             steps {
                 sshagent(credentials: ["${SSH_CREDENTIALS}"]) {
                     sh """
-                    ssh -o StrictHostKeyChecking=no ec2-user@${EC2_HOST} 
-                    "docker pull ${DOCKER_IMAGE}:${IMAGE_TAG} && 
-                    docker stop service-a || true && 
-                    docker rm service-a || true && 
+                    ssh -o StrictHostKeyChecking=no ec2-user@${EC2_HOST} \\
+                    "docker pull ${DOCKER_IMAGE}:${IMAGE_TAG} && \\
+                    docker stop service-a || true && \\
+                    docker rm service-a || true && \\
                     docker run -d --name service-a -p 8080:8080 ${DOCKER_IMAGE}:${IMAGE_TAG}"
                     """
                 }
             }
+        }
     }
 }
