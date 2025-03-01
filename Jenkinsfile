@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKER_IMAGE = 'kitthipan55/service-a'
-        EC2_IP = '44.202.53.23'
+        EC2_IP = '34.201.184.184'
     }
     stages {
         stage('Checkout Source') {
