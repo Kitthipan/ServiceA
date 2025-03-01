@@ -1,5 +1,5 @@
 server:
-  port: 8081  # หรือพอร์ตที่ต้องการ
+  port: 8080  # หรือพอร์ตที่ต้องการ
 
 spring:
   application:
