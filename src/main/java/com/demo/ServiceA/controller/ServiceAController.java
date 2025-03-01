@@ -10,6 +10,6 @@ public class ServiceAController {
 
     @GetMapping("/hello")
     public String hello() {
-        return "Hello from Service A!";
+        return "Hello from Service A! New Version 1.1.1.2";
     }
 }
