@@ -24,13 +24,13 @@ pipeline {
         }
         stage('Deploy to EC2') {
             steps {
-                sshagent(['ec2-ssh-key']) {
+                sshagent(credentials: ["${SSH_CREDENTIALS}"]) {
                     sh """
-                    ssh -o StrictHostKeyChecking=no ec2-user@${EC2_IP} <<EOF
+                    ssh -o StrictHostKeyChecking=no ec2-user@${EC2_HOST} <<EOF
+                    docker pull ${DOCKER_IMAGE}:${IMAGE_TAG}
                     docker stop service-a || true
                     docker rm service-a || true
-                    docker pull ${DOCKER_IMAGE}:${BUILD_NUMBER}
-                    docker run -d --name service-a -p 8081:8081 ${DOCKER_IMAGE}:${BUILD_NUMBER}
+                    docker run -d --name service-a -p 8080:8080 ${DOCKER_IMAGE}:${IMAGE_TAG}
                     EOF
                     """
                 }
